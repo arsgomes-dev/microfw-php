@@ -1,0 +1,16 @@
+{
+    "name": "microfw/src",
+    "autoload": {
+        "psr-4": {
+            "Microfw\\Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Microfw"
+        }
+    ],
+    "require": {
+        "league/oauth2-client": "*"
+    }
+}
