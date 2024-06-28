@@ -19,14 +19,14 @@
   
   class EmailConfig {
        public function getEmailConfig() {
-          $database = array(
+          $email = array(
               'host' => 'HOST',
               'username' => 'USERNAME',
               'passwd' => 'PASSWORD',
               'port' => 'PORT',
               'name' => 'NAME'
               );
-          return $database;
+          return $email;
       }
   }
   
