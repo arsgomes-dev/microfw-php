@@ -11,7 +11,7 @@
 
       public function getDefineSettings() {
           if (!defined('SETTING_TIMEZONE')) {
-              define('SETTING_TIMEZONE', 'America/Bahia');
+              define('SETTING_TIMEZONE', 'America/Sao_Paulo');
               define('SETTING_MAGICALMETHODS', ' getOne , getAll , getCount , getDefineSettings , getMethodsName , getDateTime ');
               define('SETTING_MAGICALVARIABLES', ' getLogTimestamp, getTable_db , getTable_id_db , getTable_idField_db , getTable_columns_db , getTable_columns_like_db, getGcid_generation ');
               //prefixo das tabelas do database

@@ -13,7 +13,7 @@
 
       static function secSessionSart() {
           $config = new McConfig;
-          $domain_dir = $config->domain;
+          $domain_dir = $config->getDomain();
           if (isset($session)) {
               $session_name = 'sec_session_id';   // Set a custom session name 
               $secure = 'SECURE';
@@ -22,7 +22,7 @@
               // Forces sessions to only use cookies.
               if (ini_set('session.use_only_cookies', 1) === FALSE) {
                   $_SESSION['erro_log'] = "Não foi possível iniciar uma sessão segura!";
-                  header("Location:" . $config->domain . "/" . $config->$domainAdmin . "/login");
+                  header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
                   exit();
               }    // Gets current cookies params.
               $cookieParams = session_get_cookie_params();

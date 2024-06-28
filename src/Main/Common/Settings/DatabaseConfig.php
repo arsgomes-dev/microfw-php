@@ -1,6 +1,6 @@
 <?php
 
-  namespace Microfw\Src\Configs;
+  namespace Microfw\Src\Main\Common\Settings;
 
   //TODO: Classe responsável por armazenar os dados de conexão do banco de dados MYSQL
   // Poderá editar as informações  de acordo com sua conexão com o banco de dados

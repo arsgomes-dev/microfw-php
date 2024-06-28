@@ -14,7 +14,7 @@
       public static function expelsVisitor() {
           $config = new McConfig;
           unset($_SESSION['user_id'], $_SESSION['user_username'], $_SESSION['user_login_string'], $_SESSION['user_type']);
-          header("Location:$config->domain/" . $config->$domainAdmin . "/login");
+          header("Location:".$config->getDomain()."/" . $config->getDomainAdmin() . "/login");
       }
   }
   

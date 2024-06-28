@@ -2,7 +2,7 @@
 
   namespace Microfw\Src\Main\Common\Entity;
 
-  use Microfw\Src\Configs\DatabaseConfig;
+  use Microfw\Src\Main\Common\Settings\DatabaseConfig;
 
   /**
    * Description of Mysql

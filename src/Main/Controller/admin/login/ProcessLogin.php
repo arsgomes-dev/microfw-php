@@ -42,7 +42,7 @@
   $sitekey = $grecaptcha->getReChaveSiteKey();
   $secretkey = $grecaptcha->getReChaveSecretKey();
 //define pagina home do sistema
-  $pag = $config->domain . "/" . $config->$domainAdmin . "/" . $config->pageHome;
+  $pag = $config->getDomain() . "/" . $config->getDomainAdmin() . "/" . $config->getPageHome();
 //inicia session
   $secSessionStart = new SecSessionStart;
 //verifica se foi recebido as informações do formulário de login
@@ -55,7 +55,7 @@
           if (!$grecaptcha) {
 
               $_SESSION['erro_log'] = $translate->translate('Por Favor Responda a reCAPTCHA!', $lg_code);
-              header("Location:" . $config->domain . "/" . $config->$domainAdmin . "/login");
+              header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
               exit();
           } else {
               //verificação do recaptcha
@@ -83,37 +83,37 @@
                       exit();
                   } else if ($returnLogin == 2) {
                       $_SESSION['erro_log'] = $translate->translate('Login e/ou Senha incorreto(s)!', $lg_code);
-                      header("Location:" . $config->domain . "/" . $config->domainAdmin . "/login");
+                      header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
                   } else if ($returnLogin == 3) {
                       $_SESSION['erro_log'] = $translate->translate('Sua conta foi bloqueada! '
                                 . 'Foi enviado para o seu e-mail instruções para o desbloqueio!', $lg_code);
-                      header("Location:" . $config->domain . "/" . $config->domainAdmin . "/login");
+                      header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
                   } else if ($returnLogin == 4) {
                       $_SESSION['erro_log'] = $translate->translate('Sua conta foi bloqueada! '
                                 . 'Erro ao enviar e-mail de desboqueio, Entre em contato conosco!', $lg_code);
-                      header("Location:" . $config->domain . "/" . $config->domainAdmin . "/login");
+                      header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
                   } else if ($returnLogin == 5) {
                       $_SESSION['erro_log'] = $translate->translate('Sua conta ainda está desativada!'
                                 . ' Acesse o e-mail enviado no momento do cadastro para ativá-la.', $lg_code);
-                      header("Location:" . $config->domain . "/" . $config->domainAdmin . "/login");
+                      header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
                   } else {
                       $_SESSION['erro_log'] = $translate->translate('Não foi possível iniciar uma sessão segura!', $lg_code);
-                      header("Location:" . $config->domain . "/" . $config->domainAdmin . "/login");
+                      header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
                   }
               } else {
                   $_SESSION['erro_log'] = $translate->translate('Ocorreu um erro na resposta do reCAPTCHA, tente novamente!', $lg_code);
                   $responseKeys["success"];
-                  header("Location:" . $config->domain . "/" . $config->domainAdmin . "/login");
+                  header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
                   exit();
               }
           }
       } else {
           $_SESSION['erro_log'] = $translate->translate('Existem campos em branco!', $lg_code);
-          header("Location:" . $config->domain . "/" . $config->domainAdmin . "/login");
+          header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
           exit();
       }
   } else {
       $_SESSION['erro_log'] = $translate->translate('Existem campos em branco!', $lg_code);
-      header("Location:" . $config->domain . "/" . $config->domainAdmin . "/login");
+      header("Location:" . $config->getDomain() . "/" . $config->getDomainAdmin() . "/login");
       exit();
   }

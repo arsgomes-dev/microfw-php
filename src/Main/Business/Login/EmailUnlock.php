@@ -17,7 +17,7 @@
 
       public static function email_unlock($email, $user_id, $username, $unlock_code) {
           $config = new McConfig;
-          $endereco_http = $config->domain;
+          $endereco_http = $config->getDomain();
           $st = new StConfig;
           $stConfig = $st->getOne($st, 1);
           $title_website = $stConfig->getTitle();
@@ -35,8 +35,7 @@
               }
           }
 
-          $domain_dir = $config->domainDir;
-          $endereco_http = $config->domain;
+          $endereco_http = $config->getDomain();
           //email a ser enviado
           $datetime = explode(" ", $notification->getDateTime());
           $pattern = array('{{ticket.dateSend}}', '{{ticket.hourSend}}', '{{website.title}}', '{{website.http}}');

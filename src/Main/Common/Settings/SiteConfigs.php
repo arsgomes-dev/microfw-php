@@ -1,6 +1,6 @@
 <?php
 
-  namespace Microfw\Src\Configs;
+  namespace Microfw\Src\Main\Common\Settings;
 
   /**
    * Description of SiteConfigs
@@ -12,17 +12,20 @@
   /*
     db => seleciona o bando de dados utilizado {1 = Mysql},
     domain => domínio padrão do site,
-    domainClient => domínio de acesso ao público,
     domainAdmin => domínio de acesso a área administrativa,
+    pageHome => página de redirecionamento após login,
+    siteTitle => Titulo do site,
+    reChaveSecretKey => chave secreta do recaptcha,
+    reChaveSiteKey => chave publica do recaptcha,
    */
   class SiteConfigs {
 
       public $siteConfig = array(
           'db' => '1',
           'domain' => 'domain',
-          'domainClient' => 'domainClient',
           'domainAdmin' => 'domainAdmin',
           'pageHome' => 'pageHome',
+          'siteTitle' => 'siteTitle',
           'reChaveSecretKey' => 'reChaveSecretKey',
           'reChaveSiteKey' => 'reChaveSiteKey');
   }
