@@ -1,7 +1,7 @@
 
 # MicroFW
 
-MicroFramework PHP, ajuda você a escrever rapidamente aplicações web de forma simplificada e com acesso a banco de dados MYSQL de forma bem prática.
+MicroFramework for PHP, ajuda você a escrever rapidamente aplicações web de forma simplificada e com acesso a banco de dados MYSQL de forma bem prática.
 
 O que seria melhor do que começar um projeto tendo uma base em vez de começar do absoluto zero?
 
