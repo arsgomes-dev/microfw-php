@@ -2,9 +2,9 @@
 
   namespace Microfw\Src\Main\Common\Entity;
 
-  use Microfw\Src\Main\Common\Settings\GCID;
   use Microfw\Src\Main\Common\Settings\MagicalMethods;
   use Microfw\Src\Main\Business\Service\KeepPerseveringService;
+  use Microfw\Src\Main\Functions\GCID;
 
 /*
    * Description of User
