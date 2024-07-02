@@ -9,9 +9,9 @@
     host => link de conexão com o banco de dados,
     database => nome do banco de dados,
     charset => especifica a codificação de caracteres utilizado nas tabelas do banco de dados,
-    username => nome do usuário com privilégios padrões,
-    passwd => senha do usuário com privilégios padrões;
-   */
+    username => nome do usuário do banco de dados,
+    passwd => senha do usuário do banco de dados
+;   */
 
   class DatabaseConfig {
 
