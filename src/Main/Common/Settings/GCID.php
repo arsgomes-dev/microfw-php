@@ -8,7 +8,7 @@
    * @author ARGomes
    */
   class GCID {
-      use General;
+      use MagicalMethods;
 
       public function getGeneratorGCID() {
           $timestamp = time();

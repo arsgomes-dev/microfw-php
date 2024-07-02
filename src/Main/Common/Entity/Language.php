@@ -2,7 +2,7 @@
 
   namespace Microfw\Src\Main\Common\Entity;
 
-  use Microfw\Src\Main\Common\Settings\General;
+  use Microfw\Src\Main\Common\Settings\MagicalMethods;
   use Microfw\Src\Main\Business\Service\KeepPerseveringService;
 
   /**
@@ -12,7 +12,7 @@
    */
   class Language extends KeepPerseveringService {
       
-      use General;
+      use MagicalMethods;
 
       protected $logTimestamp = false;
       protected $table_db = "language";

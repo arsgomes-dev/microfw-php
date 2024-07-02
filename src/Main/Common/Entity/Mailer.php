@@ -2,7 +2,7 @@
 
   namespace Microfw\Src\Main\Common\Entity;
 
-  use Microfw\Src\Main\Common\Settings\General;
+  use Microfw\Src\Main\Common\Settings\MagicalMethods;
   use Microfw\Src\Main\Common\Settings\EmailConfig;
 
   /**
@@ -11,7 +11,7 @@
    * @author ARGomes
    */
   class Mailer extends EmailConfig {
-      use General;
+      use MagicalMethods;
 
       private string $host;
       private string $username;

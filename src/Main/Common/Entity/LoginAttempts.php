@@ -3,7 +3,7 @@
   namespace Microfw\Src\Main\Common\Entity;
 
   use Microfw\Src\Main\Business\Service\KeepPerseveringService;
-  use Microfw\Src\Main\Common\Settings\General;
+  use Microfw\Src\Main\Common\Settings\MagicalMethods;
 
   /**
    * Description of LoginAttempts
@@ -12,7 +12,7 @@
    */
   class LoginAttempts extends KeepPerseveringService {
       
-      use General;
+      use MagicalMethods;
 
       protected $logTimestamp = false;
       protected $table_db = "loginattempts";

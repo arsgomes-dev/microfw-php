@@ -3,7 +3,7 @@
   namespace Microfw\Src\Main\Common\Entity;
 
   use Microfw\Src\Main\Common\Settings\GCID;
-  use Microfw\Src\Main\Common\Settings\General;
+  use Microfw\Src\Main\Common\Settings\MagicalMethods;
   use Microfw\Src\Main\Business\Service\KeepPerseveringService;
 
 /*
@@ -13,7 +13,7 @@
    */
 
   class User extends KeepPerseveringService {
-      use General;
+      use MagicalMethods;
 
       protected $logTimestamp = true;
       protected $table_db = "users";
