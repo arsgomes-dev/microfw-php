@@ -6,10 +6,10 @@
   $config = new McConfig;
   $validateRoutes = new ValidateRoutes();
   $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-  $directoryFile = dir($documentRoot . "/src/Routing/Routes/Routings");
+  $directoryFile = dir($documentRoot . "/src/Routing/Routes/Collections");
 
   while ($files = $directoryFile->read()) {
       if (!strcasecmp($files, ".") == 0 && !strcasecmp($files, "..") == 0) {
-          include $documentRoot . "/src/Routing/Routes/Routings/" . $files;
+          include $documentRoot . "/src/Routing/Routes/Collections/" . $files;
       }
   }
