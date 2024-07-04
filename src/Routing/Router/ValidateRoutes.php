@@ -9,12 +9,12 @@
    */
   class ValidateRoutes {
 
-      public function getRoutes($dir, $notfound, $gets = null) {
+      public function getRoutes($dir, $notFound, $gets = null) {
           ob_start();
           if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/src/Main/View/" . $dir . ".php")) {
               require $_SERVER['DOCUMENT_ROOT'] . "/src/Main/View/" . $dir . ".php";
           } else {
-              require $_SERVER['DOCUMENT_ROOT'] . "/src/Main/View/" . $notfound . ".php";
+              require $_SERVER['DOCUMENT_ROOT'] . "/src/Main/View/" . $notFound . ".php";
           }
           $html = ob_get_contents();
           ob_end_clean();
