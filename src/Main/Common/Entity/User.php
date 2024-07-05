@@ -1,4 +1,4 @@
-<?php
+  <?php
 
   namespace Microfw\Src\Main\Common\Entity;
 

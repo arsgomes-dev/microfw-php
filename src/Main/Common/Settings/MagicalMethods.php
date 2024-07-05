@@ -16,7 +16,7 @@ trait MagicalMethods {
           if (!defined('SETTING_TIMEZONE')) {
               //SETTING_TIMEZONE = Fuso horário da aplicação 
               define('SETTING_TIMEZONE', 'America/Sao_Paulo');
-              //Métodos e variáveis que irá ser ignorado pela aplicação durante o tratamento das querys do banco de dados
+              //Métodos e variáveis que irão ser ignorado das classes pela aplicação durante o tratamento das querys do banco de dados
               define('SETTING_MAGICALMETHODS', ' getOne , getAll , getCount , getDefineSettings , getMethodsName , getDateTime ');
               define('SETTING_MAGICALVARIABLES', ' getLogTimestamp, getTable_db , getTable_id_db , getTable_idField_db , getTable_columns_db , getTable_columns_like_db, getGcid_generation ');
               //prefixo das tabelas do banco de dados
@@ -31,6 +31,7 @@ trait MagicalMethods {
       }
        public function getMethodsName($class) {
           $cl = new $class();
+          $cl->getDefineSettings();
           $methodsClass = get_class_methods($cl);
           $methods = [];
           foreach ($methodsClass as $key) {
