@@ -9,6 +9,6 @@ namespace Microfw\Src\Main\Common\Entity;
  * @author Ricardo Gomes
  */
 // É necessário realizar o extends KeepPerseveringService para herdar as funções do banco de dados.
-class ClassModel extends ModelClass {
+class Example extends ModelClass {
     
 }

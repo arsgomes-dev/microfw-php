@@ -6,10 +6,9 @@
 
   class FactoryDAO {
 
-      public static function one($db, int $parameter = null) {
+      public static function one($db, $class, int $parameter = null) {
           switch ($db) {
               case 1:
-                  $class = get_called_class();
                   $obj = new MysqlDAO();
                   return $obj::daoOne($class, $parameter);
                   break;

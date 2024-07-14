@@ -4,7 +4,6 @@ namespace Microfw\Src\Main\Business\Service;
 
 use Microfw\Src\Main\Dao\Factory\FactoryDAO;
 use Microfw\Src\Main\Common\Entity\McConfig;
-use Microfw\Src\Main\Common\Entity\ModelClass;
 
 /**
  * Description of KeepPerseveringService
@@ -16,40 +15,36 @@ use Microfw\Src\Main\Common\Entity\ModelClass;
 
 class KeepPerseveringService extends FactoryDAO {
 
-    use ModelClass;
-
     public function getOne(
-            $class,
             int $parameter = null
     ) {
         if (is_numeric($parameter) && $parameter !== null) {
             $config = new McConfig;
-            return $class::one($config->getDb(), $parameter);
+            return $this::one($config->getDb(), $this, $parameter);
         }
     }
 
     public function getAll(
-            $class,
             int $limit = 0,
             int $offset = 0,
             string $order = '',
             int $and_or = 0
     ) {
         $config = new McConfig;
-        return $class::all($config->getDb(), $class, $limit, $offset, $order, $and_or);
+        return $this::all($config->getDb(), $this, $limit, $offset, $order, $and_or);
     }
 
-    public function setSave($class) {
+    public function setSave() {
         if ($this) {
             $config = new McConfig;
-            return $class->save($config->getDb());
+            return $this->save($config->getDb());
         }
     }
 
-    public function setDelete($class) {
+    public function setDelete() {
         if ($this) {
             $config = new McConfig;
-            return $class::delete($config->getDb());
+            return $this::delete($config->getDb());
         }
     }
 }

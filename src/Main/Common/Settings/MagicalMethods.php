@@ -16,21 +16,19 @@ trait MagicalMethods {
           if (!defined('SETTING_TIMEZONE')) {
               //SETTING_TIMEZONE = Fuso horário da aplicação 
               define('SETTING_TIMEZONE', 'America/Sao_Paulo');
+              //Diretório das entidades 
+              define('SETTING_DIR_ENTITY', 'Microfw\\Src\\Main\\Common\\Entity\\');
               //Métodos e variáveis que irão ser ignorado das classes pela aplicação durante o tratamento das querys do banco de dados
               define('SETTING_MAGICALMETHODS', ' getOne , getAll , getCount , getDefineSettings , getMethodsName , getDateTime ');
-              define('SETTING_MAGICALVARIABLES', ' getLogTimestamp, getTable_db , getTable_id_db , getTable_idField_db , getTable_columns_db , getTable_columns_like_db, getGcid_generation ');
+              define('SETTING_MAGICALVARIABLES', ' getLogTimestamp, getTable_db , getTable_db_primaryKey , getTable_idField_db , getTable_columns_db , getTable_db_like, getGcid_generation ');
               //prefixo das tabelas do banco de dados
               define('SETTING_DB_TABLE_PREFIX', 'tbsys_');
               //campo de identificação única do banco de dados
-              define('SETTING_DB_FIELD_ID', 'id');
-              //campo onde será armazenado a data/hora do cadastro no banco de dados 
-              define('SETTING_DB_FIELD_CRIATED_AT', 'criated_at');
-              //campo onde será armazenado a data/hora da atualização no banco de dados 
-              define('SETTING_DB_FIELD_UPDATED_AT', 'updated_at');
+              define('SETTING_DB_FIELD_PRIMARYKEY', 'id');
           }
       }
-       public function getMethodsName($class) {
-          $cl = new $class();
+       public function getMethodsName() {
+          $cl = new $this;
           $cl->getDefineSettings();
           $methodsClass = get_class_methods($cl);
           $methods = [];

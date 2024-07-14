@@ -20,10 +20,8 @@ class MysqlDAO {
     public static function daoOne($class, int $parameter = null) {
         if (is_numeric($parameter) && $parameter !== null && $parameter !== "") {
             $mysql = new Mysql();
-            $cr = new $class;
-            $cr->getDefineSettings();
-            $table_name = SETTING_DB_TABLE_PREFIX . $cr->getTable_db();
-            $class_tb_id_db = (!is_null($cr->getTable_id_db())) ? $cr->getTable_id_db() : SETTING_DB_FIELD_ID;
+            $table_name = SETTING_DB_TABLE_PREFIX . (($class->getTable_db() !== "") ? $class->getTable_db() : strtolower(explode(SETTING_DIR_ENTITY, get_class($class))[1]) . "s");
+            $class_tb_id_db = (($class->getTable_db_primaryKey() !== "") ? $class->getTable_db_primaryKey() : SETTING_DB_FIELD_PRIMARYKEY);
             try {
                 $pdo = new \PDO($mysql->getFactoryUrl(), $mysql->getUsername(), $mysql->getPasswd());
                 $sql_temp = 'SELECT * FROM ' . (is_null($table_name) ? strtolower($class) : $table_name);
@@ -70,12 +68,11 @@ class MysqlDAO {
             string $order = '',
             int $and_or = 0
     ) {
-        $class->getDefineSettings();
         $mysql = new Mysql();
-        $class_tb_columns_db = $class->getMethodsName($class);
-        $class_tb_columns_like_db = $class->getTable_columns_like_db();
+        $class_tb_columns_db = $class->getMethodsName();
+        $class_tb_columns_like_db = $class->getTable_db_like();
         $class_tb_columns_db_count = count($class_tb_columns_db);
-        $table_name = SETTING_DB_TABLE_PREFIX . $class->getTable_db();
+        $table_name = SETTING_DB_TABLE_PREFIX . (($class->getTable_db() !== "") ? $class->getTable_db() : strtolower(explode(SETTING_DIR_ENTITY, get_class($class))[1]) . "s");
         $where = [];
         $where_boolean = false;
         try {
@@ -147,12 +144,10 @@ class MysqlDAO {
     //função utilizada para salvar dados no DB, as informações são passadas através de uma classe com as variáveis do objeto.
     //caso o objeto possua a variável ID o código entenderá como solicitação de atualização, caso não possua, será inserido no banco
     public static function daoSave($class) {
-        $class->getDefineSettings();
         $mysql = new Mysql();
-        $class_tb_columns_db = $class->getMethodsName($class);
-        ;
-        $table_name = SETTING_DB_TABLE_PREFIX . $class->getTable_db();
-        $class_tb_id_db = (!is_null($cr->getTable_id_db())) ? $cr->getTable_id_db() : SETTING_DB_FIELD_ID;
+        $class_tb_columns_db = $class->getMethodsName();
+        $table_name = SETTING_DB_TABLE_PREFIX . (($class->getTable_db() !== "") ? $class->getTable_db() : strtolower(explode(SETTING_DIR_ENTITY, get_class($class))[1]) . "s");
+        $class_tb_id_db = (($class->getTable_db_primaryKey() !== "") ? $class->getTable_db_primaryKey() : SETTING_DB_FIELD_PRIMARYKEY);
         $class_tb_columns_db_count = count($class_tb_columns_db);
         $sets = array();
         try {
@@ -170,12 +165,12 @@ class MysqlDAO {
                 $sql_insert_values = "";
                 $sql_construct .= "INSERT INTO " . $table_name . " (";
                 if ($class->getLogTimestamp() === true) {
-                    $sql_construct .= "criated_at";
+                    $sql_construct .= "created_at";
                 }
                 $sql_i = 0;
                 foreach ((array) $sets as $key => $value) {
                     if (isset($key, $value)) {
-                        if ($key !== "" && $key !== 0 && $value !== "" && $key !== "updated_at" && $key !== "criated_at") {
+                        if ($key !== "" && $key !== 0 && $value !== "" && $key !== "updated_at" && $key !== "created_at") {
                             if ($class->getLogTimestamp() === true && $sql_i >= 0) {
                                 $sql_construct .= ", ";
                             } else if ($class->getLogTimestamp() === false && $sql_i > 0) {
@@ -195,7 +190,7 @@ class MysqlDAO {
                 }
                 $sql_construct .= ") VALUES (";
                 if ($class->getLogTimestamp() === true) {
-                    $sql_construct .= ":criated_at";
+                    $sql_construct .= ":created_at";
                 }
                 $sql_construct .= $sql_insert_values;
                 $sql_construct .= ");";
@@ -208,7 +203,7 @@ class MysqlDAO {
                 $sql_i = 0;
                 foreach ((array) $sets as $key => $value) {
                     if (isset($key, $value)) {
-                        if ($key !== "" && $key !== 0 && $value !== "" && $key !== "updated_at" && $key !== "criated_at") {
+                        if ($key !== "" && $key !== 0 && $value !== "" && $key !== "updated_at" && $key !== "created_at") {
                             if ($class->getLogTimestamp() === true && $sql_i >= 0) {
                                 $sql_construct .= ", ";
                             } else if ($class->getLogTimestamp() === false && $sql_i > 0) {
@@ -225,12 +220,12 @@ class MysqlDAO {
                 $sql_insert_values = "";
                 $sql_construct .= "INSERT INTO " . $table_name . " (";
                 if ($class->getLogTimestamp() === true) {
-                    $sql_construct .= "criated_at";
+                    $sql_construct .= "created_at";
                 }
                 $sql_i = 0;
                 foreach ((array) $sets as $key => $value) {
                     if (isset($key, $value)) {
-                        if ($key !== "" && $key !== 0 && $value !== "" && $key !== "updated_at" && $key !== "criated_at") {
+                        if ($key !== "" && $key !== 0 && $value !== "" && $key !== "updated_at" && $key !== "created_at") {
                             if ($class->getLogTimestamp() === true && $sql_i >= 0) {
                                 $sql_construct .= ", ";
                             } else if ($class->getLogTimestamp() === false && $sql_i > 0) {
@@ -250,7 +245,7 @@ class MysqlDAO {
                 }
                 $sql_construct .= ") VALUES (";
                 if ($class->getLogTimestamp() === true) {
-                    $sql_construct .= ":criated_at";
+                    $sql_construct .= ":created_at";
                 }
                 $sql_construct .= $sql_insert_values;
                 $sql_construct .= ");";
@@ -267,12 +262,12 @@ class MysqlDAO {
             }
             if (isset($id) && $id > 0) {
                 if ($class->getLogTimestamp() === true) {
-                    $sql->bindValue(":" . SETTING_DB_FIELD_UPDATED_AT, $class->getDateTime(), PDO::PARAM_STR);
+                    $sql->bindValue(":updated_at", $class->getDateTime(), PDO::PARAM_STR);
                 }
                 $sql->bindValue(":" . trim($class_tb_id_db), $id, PDO::PARAM_INT);
             } else {
                 if ($class->getLogTimestamp() === true) {
-                    $sql->bindValue(":" . SETTING_DB_FIELD_CRIATED_AT, $class->getDateTime(), PDO::PARAM_STR);
+                    $sql->bindValue(":created_at", $class->getDateTime(), PDO::PARAM_STR);
                 }
             }
             $result = $sql->execute();
@@ -294,16 +289,14 @@ class MysqlDAO {
 
     //função utilizada para deletar dados pelo ID no DB
     public static function daoDelete($class) {
-
-        $class->getDefineSettings();
         $mysql = new Mysql();
-        $table_name = SETTING_DB_TABLE_PREFIX . $class->getTable_db();
+        $table_name = SETTING_DB_TABLE_PREFIX . (($class->getTable_db() !== "") ? $class->getTable_db() : strtolower(explode(SETTING_DIR_ENTITY, get_class($class))[1]) . "s");
         $id_get = "";
-        if ($class->getTable_id_db() == SETTING_DB_FIELD_ID) {
-            $class_tb_id_db = (!is_null($cr->getTable_id_db())) ? $cr->getTable_id_db() : SETTING_DB_FIELD_ID;
+        if ($class->getTable_db_primaryKey() == SETTING_DB_FIELD_PRIMARYKEY) {
+            $class_tb_id_db = (($class->getTable_db_primaryKey() !== "") ? $class->getTable_db_primaryKey() : SETTING_DB_FIELD_PRIMARYKEY);
             $id_get = "get" . ucfirst($class_tb_id_db);
         } else {
-            $class_tb_id_db = (!is_null($cr->getTable_id_db())) ? $cr->getTable_id_db() : SETTING_DB_FIELD_ID;
+            $class_tb_id_db = (($class->getTable_db_primaryKey() !== "") ? $class->getTable_db_primaryKey() : SETTING_DB_FIELD_PRIMARYKEY);
             $id_get = "get" . ucfirst($class_tb_id_db);
         }
         $value_id = $class->$id_get();
