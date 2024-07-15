@@ -66,7 +66,7 @@ class MysqlDAO {
             int $limit = 0,
             int $offset = 0,
             string $order = '',
-            int $and_or = 0
+            bool $and_or = false
     ) {
         $mysql = new Mysql();
         $class_tb_columns_db = $class->getMethodsName();
@@ -84,7 +84,7 @@ class MysqlDAO {
                     if ($class->$method() !== null && $class->$method() !== "") {
                         $where[$class_tb_columns_db[$i]] = $class->$method();
                         $like_equal = (in_array($class_tb_columns_db[$i], $class_tb_columns_like_db)) ? " like " : " = ";
-                        $sql_temp .= ($where_boolean === false) ? ' WHERE ' : (($and_or === 0) ? ' AND ' : ' OR ');
+                        $sql_temp .= ($where_boolean === false) ? ' WHERE ' : (($and_or === false) ? ' AND ' : ' OR ');
                         $sql_temp .= trim($class_tb_columns_db[$i], " ") . ' ' . $like_equal . ' :' . trim($class_tb_columns_db[$i]);
                         $where_boolean = true;
                     }

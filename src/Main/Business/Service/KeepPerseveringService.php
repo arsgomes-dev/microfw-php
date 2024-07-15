@@ -28,7 +28,7 @@ class KeepPerseveringService extends FactoryDAO {
             int $limit = 0,
             int $offset = 0,
             string $order = '',
-            int $and_or = 0
+            bool $and_or = false
     ) {
         $config = new McConfig;
         return $this::all($config->getDb(), $this, $limit, $offset, $order, $and_or);
