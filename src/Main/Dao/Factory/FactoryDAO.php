@@ -4,7 +4,7 @@
 
   use Microfw\Src\Main\Dao\Database\MysqlDAO;
 
-  class FactoryDAO {
+  class FactoryDAO extends \stdClass{
 
       public static function one($db, $class, int $parameter = null) {
           switch ($db) {

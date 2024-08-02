@@ -1,4 +1,5 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/bootstrap.php';
+<?php 
+require $_SERVER['DOCUMENT_ROOT'] . '/../bootstrap.php';
 
 use Microfw\Src\Routing\Router\Request;
 

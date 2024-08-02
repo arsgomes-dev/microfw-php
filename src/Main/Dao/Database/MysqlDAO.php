@@ -14,7 +14,7 @@ use Microfw\Src\Main\Common\Entity\Mysql;
 //TODO: Classe responsável por gerir as conexões com o banco de dados MYSQL com comandos como SELECT, INSERT, UPDATE e DELETE 
 //Não alterar sem ter os conhecimentos necessários
 
-class MysqlDAO {
+class MysqlDAO extends \stdClass{
 
     //função utilizada para consultar dados em uma única linha no DB de acordo com determinados parametros
     public static function daoOne($class, int $parameter = null) {
@@ -24,7 +24,7 @@ class MysqlDAO {
             $class_tb_id_db = (($class->getTable_db_primaryKey() !== "") ? $class->getTable_db_primaryKey() : SETTING_DB_FIELD_PRIMARYKEY);
             try {
                 $pdo = new \PDO($mysql->getFactoryUrl(), $mysql->getUsername(), $mysql->getPasswd());
-                $sql_temp = 'SELECT * FROM ' . (is_null($table_name) ? strtolower($class) : $table_name);
+                $sql_temp = 'SELECT * FROM `' . (is_null($table_name) ? strtolower($class) : $table_name)."`";
                 $sql_temp .= ' WHERE ' . $class_tb_id_db . " = :id ";
                 $sql_temp .= ";";
                 $sql = $pdo->prepare($sql_temp);
@@ -77,7 +77,7 @@ class MysqlDAO {
         $where_boolean = false;
         try {
             $pdo = new \PDO($mysql->getFactoryUrl(), $mysql->getUsername(), $mysql->getPasswd());
-            $sql_temp = 'SELECT * FROM ' . (is_null($table_name) ? strtolower($class) : $table_name);
+            $sql_temp = 'SELECT * FROM `' . (is_null($table_name) ? strtolower($class) : $table_name)."`";
             for ($i = 0; $i < $class_tb_columns_db_count; $i++) {
                 $method = "get" . ucfirst($class_tb_columns_db[$i]);
                 if (!empty($class->$method())) {
@@ -163,7 +163,7 @@ class MysqlDAO {
             $id_get = "get" . ucfirst($class_tb_id_db);
             if (!method_exists($class, $id_get)) {
                 $sql_insert_values = "";
-                $sql_construct .= "INSERT INTO " . $table_name . " (";
+                $sql_construct .= "INSERT INTO `" . $table_name . "` (";
                 if ($class->getLogTimestamp() === true) {
                     $sql_construct .= "created_at";
                 }
@@ -218,7 +218,7 @@ class MysqlDAO {
                 $sql_construct .= " WHERE $class_tb_id_db = :" . $class_tb_id_db . ";";
             } else {
                 $sql_insert_values = "";
-                $sql_construct .= "INSERT INTO " . $table_name . " (";
+                $sql_construct .= "INSERT INTO `" . $table_name . "` (";
                 if ($class->getLogTimestamp() === true) {
                     $sql_construct .= "created_at";
                 }
@@ -303,7 +303,7 @@ class MysqlDAO {
         if (isset($value_id)) {
             try {
                 $pdo = new \PDO($mysql->getFactoryUrl(), $mysql->getUsername(), $mysql->getPasswd());
-                $sql_construct = "DELETE FROM " . $table_name . " WHERE " . $class_tb_id_db . " = :" . $class_tb_id_db . ";";
+                $sql_construct = "DELETE FROM `" . $table_name . "` WHERE " . $class_tb_id_db . " = :" . $class_tb_id_db . ";";
                 $sql = $pdo->prepare($sql_construct);
                 $sql->bindValue(":" . ($class_tb_id_db), $value_id, PDO::PARAM_INT);
                 $result = $sql->execute();
